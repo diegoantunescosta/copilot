@@ -11,14 +11,6 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    libxml2-dev \
-    libxslt1-dev \
-    libjpeg-dev \
-    zlib1g-dev \
-    libpq-dev \
-    && apt-get clean
 
 # Install dependencies
 RUN pip install -r requirements.txt

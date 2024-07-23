@@ -1,13 +1,30 @@
-FROM python:3.9-slim
+# Use the official Python image
+FROM python:3.8-slim
 
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set the working directory in the container
 WORKDIR /app
 
-COPY requirements.txt.
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-RUN pip install -r requirements.txt
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libxml2-dev \
+    libxslt1-dev \
+    libjpeg-dev \
+    zlib1g-dev \
+    libpq-dev \
+    && apt-get clean
 
-COPY..
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 5000
+# Expose the port Flask will run on
+EXPOSE 5020
 
-CMD ["flask", "run", "--host=0.0.0.0"]
+# Command to run the application
+CMD ["python", "app.py"]

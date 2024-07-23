@@ -1,33 +1,26 @@
 from flask import Flask, request, jsonify
-import json
-import dotenv
 import os
 
 app = Flask(__name__)
 
-dotenv.load_dotenv()
-
-openrouter_api_key = os.environ['OPENROUTER_API_KEY']
-your_site_url = os.environ['YOUR_SITE_URL']
-your_site_name = os.environ['YOUR_SITE_NAME']
+OPENROUTER_API_KEY = os.environ['OPENROUTER_API_KEY']
+MODEL = os.environ['MODEL']
+openai_client = OpenAI(
+  base_url=MODEL,
+  api_key=OPENROUTER_API_KEY,
+)
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.get_json()
+    model = data['model']
     messages = data['messages']
-    response = {
-        "role": "system",
-        "content": (
-            "Você é um assistente que sempre responde em portugues, muito educado que sempre responde de forma amigavel "
- "
-        )
-    }
+    response = openai_client.chat.completions.create(
 
-    for message in messages:
-        if message['role'] == 'user':
-            response['content'] += f"\n{message['content']}"
-
-    return jsonify(response)
+        model=model,
+        messages=messages,
+    )
+    return jsonify(response.choices[0].message.content)
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=5020)
+    app.run(debug=True)

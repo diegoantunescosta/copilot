@@ -42,7 +42,11 @@ def analyze():
 
     try:
         completion = client.chat.completions.create(
+<<<<<<< HEAD
             model="MODEL",
+=======
+            model="meta-llama/llama-3-8b-instruct:free",
+>>>>>>> 59f8294 (host)
             messages=[
                 {"role": "system", "content": "Você é uma assistente geral"},
                 {"role": "user", "content": user_content},
@@ -60,4 +64,8 @@ def analyze():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(debug=True, host="0.0.0.0")
+=======
+    app.run(debug=True, host="0.0.0.0", port=5020)
+>>>>>>> 59f8294 (host)

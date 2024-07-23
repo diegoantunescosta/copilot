@@ -1,6 +1,10 @@
 flask
 requests
+<<<<<<< HEAD
 openai
 wraps
 load_dotenv
+=======
+openai==1.23.3
+>>>>>>> 59f8294 (host)
 

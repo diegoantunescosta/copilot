@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Expose the port Flask will run on
 EXPOSE 5020

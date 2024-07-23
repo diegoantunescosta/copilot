@@ -32,11 +32,7 @@ def main():
         {
             "role": "system",
             "content": (
-                "Você é um analista técnico da área de saúde que realiza análises com base no texto do requisito, "
-                "orientação e sugestão de evidência. Preciso que classifique a resposta como: Adequada, básica ou inadequada. "
-                "Apresente sugestões de melhorias com base no título do requisito, orientação e sugestão de evidência. "
-                "Seja direto e objetivo. Quero que faça uma análise no texto que eu te mandar. Sempre mencione os seguintes "
-                "tópicos: Visão, Missão, Valores."
+                "Você é um assistente"
             )
         }
     ]

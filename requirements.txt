@@ -1,4 +1,6 @@
 flask
 requests
 openai
+wraps
+load_dotenv
 
